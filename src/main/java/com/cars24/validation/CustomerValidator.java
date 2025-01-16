@@ -1,14 +1,14 @@
 package com.cars24.validation;
 
-import com.cars24.data.Entities.req.AddCustomer;
+import com.cars24.data.Entities.req.AddCustomerReq;
 
 public class CustomerValidator {
 
-    public static void validateAddCustomer(AddCustomer addCustomer){
-        validateName(addCustomer.getName());
-        validatePhone(addCustomer.getPhone());
-        validateGmail(addCustomer.getEmail());
-        validateAddress(addCustomer.getAddress());
+    public static void validateAddCustomer(AddCustomerReq addCustomerReq){
+        validateName(addCustomerReq.getName());
+        validatePhone(addCustomerReq.getPhone());
+        validateGmail(addCustomerReq.getEmail());
+        validateAddress(addCustomerReq.getAddress());
     }
 
     private static void validateName(String name){

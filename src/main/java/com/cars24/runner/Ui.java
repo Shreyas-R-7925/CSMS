@@ -1,6 +1,6 @@
 package com.cars24.runner;
 
-import com.cars24.data.Entities.req.AddCustomer;
+import com.cars24.data.Entities.req.AddCustomerReq;
 
 import java.util.Scanner;
 
@@ -10,12 +10,12 @@ public class Ui {
     public static void addCustomer()
     {
         System.out.println("Enter customer details");
-        AddCustomer req = new AddCustomer();
+        AddCustomerReq req = new AddCustomerReq();
         req.setName(scanner.next());
         req.setPhone(scanner.next());
         req.setEmail(scanner.next());
         req.setAddress(scanner.next());
-        
+
     }
 
     public static void getCustomer()

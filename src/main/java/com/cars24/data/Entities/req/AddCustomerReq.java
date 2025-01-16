@@ -1,6 +1,6 @@
 package com.cars24.data.Entities.req;
 
-public class AddCustomer {
+public class AddCustomerReq {
 
     private String name;
     private String phone;
