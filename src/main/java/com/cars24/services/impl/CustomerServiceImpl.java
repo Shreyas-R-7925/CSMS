@@ -8,7 +8,7 @@ import com.cars24.data.Entities.req.UpdateCustomerReq;
 import com.cars24.data.Entities.resp.CustomerProfileResponse;
 import com.cars24.services.CustomerService;
 
-import static com.cars24.validation.CustomerValidator.validateAddCustomer;
+import static com.cars24.validation.CustomerValidator.*;
 
 public class CustomerServiceImpl implements CustomerService {
 
@@ -25,28 +25,55 @@ public class CustomerServiceImpl implements CustomerService {
         return null;
     }
 
-
     @Override
     public CustomerProfileResponse getCustomer(SearchCustomerReq searchCustomerReq){
-        CustomerProfileResponse response = customerDao.getCustomer(searchCustomerReq);
-        return response;
+        try {
+            validateGetCustomer(searchCustomerReq);
+            CustomerProfileResponse response = customerDao.getCustomer(searchCustomerReq);
+            return response;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     @Override
     public String updateCustomerByEmail(UpdateCustomerReq updateCustomerReq) {
-        String updatedResponse = customerDao.updateCustomerByEmail(updateCustomerReq);
-        return updatedResponse;
+        try {
+            validateUpdateCustomer(updateCustomerReq);
+            String updatedResponse = customerDao.updateCustomerByEmail(updateCustomerReq);
+            return updatedResponse;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     @Override
     public String updateCustomerByPhone(UpdateCustomerReq updateCustomerReq){
-        String updatedResponse = customerDao.updateCustomerByPhone(updateCustomerReq);
-        return updatedResponse;
+        try{
+            validateUpdateCustomer(updateCustomerReq);
+            String updatedResponse = customerDao.updateCustomerByPhone(updateCustomerReq);
+            return updatedResponse;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     @Override
     public String deleteCustomer(DeleteCustomerReq deleteCustomerReq){
-        String deletedResponse = customerDao.deleteCustomer(deleteCustomerReq);
-        return deletedResponse;
+        try {
+            validateDeleteCustomer(deleteCustomerReq);
+            String deletedResponse = customerDao.deleteCustomer(deleteCustomerReq);
+            return deletedResponse;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

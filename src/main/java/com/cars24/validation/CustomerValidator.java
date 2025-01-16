@@ -1,15 +1,11 @@
 package com.cars24.validation;
 
 import com.cars24.data.Entities.req.AddCustomerReq;
+import com.cars24.data.Entities.req.DeleteCustomerReq;
+import com.cars24.data.Entities.req.SearchCustomerReq;
+import com.cars24.data.Entities.req.UpdateCustomerReq;
 
 public class CustomerValidator {
-
-    public static void validateAddCustomer(AddCustomerReq addCustomerReq){
-        validateName(addCustomerReq.getName());
-        validatePhone(addCustomerReq.getPhone());
-        validateGmail(addCustomerReq.getEmail());
-        validateAddress(addCustomerReq.getAddress());
-    }
 
     private static void validateName(String name){
         if(name == null){
@@ -36,5 +32,29 @@ public class CustomerValidator {
         if(address == null){
             throw new IllegalArgumentException("Address cannot be null");
         }
+    }
+
+    public static void validateAddCustomer(AddCustomerReq addCustomerReq){
+        validateName(addCustomerReq.getName());
+        validatePhone(addCustomerReq.getPhone());
+        validateGmail(addCustomerReq.getEmail());
+        validateAddress(addCustomerReq.getAddress());
+    }
+
+    public static void validateGetCustomer(SearchCustomerReq searchCustomerReq){
+        validateGmail(searchCustomerReq.getEmail());
+        validatePhone(searchCustomerReq.getPhone());
+    }
+
+    public static void validateUpdateCustomer(UpdateCustomerReq updateCustomerReq){
+        validateName(updateCustomerReq.getName());
+        validatePhone(updateCustomerReq.getPhone());
+        validateGmail(updateCustomerReq.getEmail());
+        validateAddress(updateCustomerReq.getAddress());
+    }
+
+    public static void validateDeleteCustomer(DeleteCustomerReq deleteCustomerReq){
+        validatePhone(deleteCustomerReq.getPhone());
+        validateGmail(deleteCustomerReq.getEmail());
     }
 }
