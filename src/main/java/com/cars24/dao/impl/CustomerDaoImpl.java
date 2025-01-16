@@ -19,6 +19,7 @@ public class CustomerDaoImpl implements CustomerDao {
     private final static String UPDATE_ERROR_MESSAGE = "Error! while updating the customer";
     private final static String DELETE_MESSAGE = "Deleted customer successfully";
     private final static String DELETE_ERROR_MESSAGE = "Error! Could not delete the specified record!";
+    private final static String NO_AFFECT_MESSAGE = "No rows affected on execution.";
     public String createCustomerv1(String name, String phone, String email, String address) {
 
         Connection connection = DbUtil.getDbConnection();
@@ -102,7 +103,10 @@ public class CustomerDaoImpl implements CustomerDao {
             preparedStatement.setString(3, updateCustomerReq.getAddress());
             preparedStatement.setString(4, updateCustomerReq.getPhone());
 
-            preparedStatement.executeUpdate();
+            int rowsAffected = preparedStatement.executeUpdate();
+            if(rowsAffected == 0){
+                return NO_AFFECT_MESSAGE;
+            }
 
             return UPDATE_BY_PHONE_SUCCESS_MESSAGE;
         }
@@ -125,8 +129,10 @@ public class CustomerDaoImpl implements CustomerDao {
             preparedStatement.setString(3, updateCustomerReq.getAddress());
             preparedStatement.setString(4, updateCustomerReq.getEmail());
 
-            preparedStatement.executeUpdate();
-
+            int rowsAffected = preparedStatement.executeUpdate();
+            if(rowsAffected == 0){
+                return NO_AFFECT_MESSAGE;
+            }
             return UPDATE_BY_EMAIL_SUCCESS_MESSAGE;
         }
         catch (Exception e){
@@ -145,8 +151,11 @@ public class CustomerDaoImpl implements CustomerDao {
             PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL);
             preparedStatement.setString(1, deleteCustomerReq.getPhone());
             preparedStatement.setString(2, deleteCustomerReq.getEmail());
-            preparedStatement.executeUpdate();
 
+            int rowsAffected = preparedStatement.executeUpdate();
+            if(rowsAffected == 0){
+                return NO_AFFECT_MESSAGE;
+            }
             return DELETE_MESSAGE;
         }
         catch (Exception e){
