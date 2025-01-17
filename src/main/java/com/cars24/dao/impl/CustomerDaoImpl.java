@@ -86,7 +86,6 @@ public class CustomerDaoImpl implements CustomerDao {
         catch (Exception e){
             System.out.println("Data not found!");
         }
-
         return null;
     }
 
